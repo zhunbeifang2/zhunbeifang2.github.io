@@ -34,6 +34,13 @@
         <div class=emscripten_border><canvas class=emscripten id=canvas oncontextmenu=event.preventDefault()
                 tabindex=-1></canvas></div><input id=text style=width:0;height:0>
         <script src="enable-threads.js"></script>
+        <script>
+            window.addEventListener("resize", resizeCanvas, false);
+            function resizeCanvas() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            }
+        </script>
         <script>var inputText = document.getElementById("text"); inputText.addEventListener("input", (function (e) { Module.insertText(e.target.value, !1) })), inputText.addEventListener("keypress", (function (e) { "Enter" === e.key && Module.insertText(inputText.value, !0) }))</script>
         <script>var statusElement = document.getElementById("status"), progressElement = document.getElementById("progress"), spinnerElement = document.getElementById("spinner"); Module = { print: void 0, canvas: (() => { var e = document.getElementById("canvas"); return e.addEventListener("webglcontextlost", (e => { alert("WebGL context lost. You will need to reload the page."), e.preventDefault() }), !1), e })(), setStatus: e => { if (Module.setStatus.last || (Module.setStatus.last = { time: Date.now(), text: "" }), e !== Module.setStatus.last.text) { var t = e.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/), s = Date.now(); t && s - Module.setStatus.last.time < 30 || (Module.setStatus.last.time = s, Module.setStatus.last.text = e, t ? (e = t[1], progressElement.value = 100 * parseInt(t[2]), progressElement.max = 100 * parseInt(t[4]), progressElement.hidden = !1, spinnerElement.hidden = !1) : (progressElement.value = null, progressElement.max = null, progressElement.hidden = !0, e || (spinnerElement.style.display = "none")), statusElement.innerHTML = e) } }, totalDependencies: 0, monitorRunDependencies: e => { this.totalDependencies = Math.max(this.totalDependencies, e), Module.setStatus(e ? "正在下载预资源包，请稍后... (" + (this.totalDependencies - e) + "/" + this.totalDependencies + ")" : "下载完成！.") } }, Module.setStatus("下载中...")</script>
         <script async src=MapleStory.js></script>
