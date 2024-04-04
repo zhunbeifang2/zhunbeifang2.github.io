@@ -6,19 +6,29 @@
         <meta content="text/html; charset=utf-8" http-equiv=Content-Type>
         <title>MapleH5</title>
         <style>
+            * {
+            margin: 0;
+            padding: 0;
+            }
+            html {
+                height: 100%;
+                width: 100%;
+            }
             body {
                 font-family: arial;
                 margin: 0;
                 padding: none;
-                background-color: rgba(72, 67, 67)
+                background-color: rgba(72, 67, 67);
+                height: 100%;
+                width: 100%;
             }
-
             .emscripten_border {
                 padding: 20px;
                 text-align: center
             }
 
             canvas {
+                display: block;
                 border: 1px solid pink;
                 border-radius: 16px;
                 background-color: rgba(72, 67, 67)
